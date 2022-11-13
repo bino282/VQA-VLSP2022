@@ -51,7 +51,7 @@ Download model and push it into outputs. Link download at: ./outputs/download.tx
 outputs/
     vit-large-mt5-large/
     vit-large-patch16-224-in21k/
-
+```
 To inference on private test with  file and model is trained. you can run:
 
 ```
