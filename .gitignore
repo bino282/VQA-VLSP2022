@@ -1,4 +1,6 @@
-__pycache__/datasets/private-test-images/
+__pycache__/
+datasets/private-test-images/
 datasets/public-test-images/
 datasets/train-images/
 outputs/vit-large-mt5-large/
+outputs/vit-large-patch16-224-in21k
