@@ -13,12 +13,13 @@ object: object1 object2 ... ; answer in ja: question
 Download and unzip at here:
 
 ```
-    datasets/private-test-images/
-    datasets/public-test-images/
-    datasets/train-images/
-    datasets/evjvqa_train.json
-    datasets/evjvqa_public_test.json
-    datasets/prepared_evjvqa_private_test.json
+datasets
+    private-test-images/
+    public-test-images/
+    train-images/
+    evjvqa_train.json
+    evjvqa_public_test.json
+    prepared_evjvqa_private_test.json
 ```
 
 ### If you want recreate vqa_train.json,vqa_public_test.json,vqa_private_test.json(question language detection)  you can :
@@ -37,14 +38,25 @@ cd ./datasets
 python detr_predict_obj.py
 ```
 
+## Setup ENV
+```
+docker build -t nhanv-vqa .
+```
+
+
 ## Inference
 Download model and push it into outputs. Link download at: ./outputs/download.txt
 
+```
+outputs/
+    vit-large-mt5-large/
+    vit-large-patch16-224-in21k/
+
 To inference on private test with  file and model is trained. you can run:
 
-
 ```
-python predict.py
+./interactive.sh
+python3 predict.py
 ```
 
 Results at ./outputs/results.json
@@ -53,7 +65,8 @@ Results at ./outputs/results.json
 
 To training you run:
 ```
-python train.py
+./interactive.sh
+python3 train.py
 ```
 if GPU is limited, you can set gradient_checkpoiting=True and model.config.use_cache=False in mt5_trainer.py
 

@@ -1,0 +1,1 @@
+docker run --gpus all -it -v $PWD:/vlsp2022_vqa/ nhanv-vqa bash

@@ -7,7 +7,7 @@ import os
 import json
 from torch import cuda
 from data_loader import VQADataSet
-from transformers import T5Tokenizer
+from transformers import T5Tokenizer,MT5Config
 from modeling_mt5 import MT5ForConditionalGeneration
 from transformers import (Seq2SeqTrainer,
                           Seq2SeqTrainingArguments)
@@ -79,7 +79,10 @@ args = Seq2SeqTrainingArguments(
     load_best_model_at_end=True,
     report_to="tensorboard"
 )
-model = MT5ForConditionalGeneration.from_pretrained(model_params["MODEL"])
+
+t5config = MT5Config.from_pretrained(model_params["MODEL"])
+t5config.vision_model_name = model_params["IMG_MODEL"]
+model = MT5ForConditionalGeneration.from_pretrained(model_params["MODEL"],config=t5config)
 model = model.to(device)
 # model.config.use_cache = False
 

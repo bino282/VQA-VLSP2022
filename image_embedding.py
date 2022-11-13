@@ -3,7 +3,7 @@ from transformers import AutoModel
 
 class ImgEmbedding(nn.Module):
     
-    def __init__(self,vision_model_name="google/vit-large-patch16-224-in21k"):
+    def __init__(self,vision_model_name):
         super(ImgEmbedding, self).__init__()
         self.encoder_img = AutoModel.from_pretrained(vision_model_name)
 

@@ -28,7 +28,7 @@ class JoinT5Encoder(T5Stack):
         )
         self.final_layer_norm = T5LayerNorm(config.d_model, eps=config.layer_norm_epsilon)
         self.dropout = nn.Dropout(config.dropout_rate)
-        self.encoder_img = ImgEmbedding()
+        self.encoder_img = ImgEmbedding(config.vision_model_name)
         self.feat_embedding = nn.Linear(256, 768)
 
         # Initialize weights and apply final processing

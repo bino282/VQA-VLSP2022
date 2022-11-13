@@ -6,22 +6,26 @@ import os
 import json
 from tqdm import tqdm
 from transformers import AutoTokenizer
-from modeling_mt5 import MT5ForConditionalGeneration
+from modeling_mt5 import MT5ForConditionalGeneration, MT5Config
 from torch import cuda
 from data_loader import VQADataSet
 os.environ["TOKENIZERS_PARALLELISM"]="true"
 device = 'cuda' if cuda.is_available() else 'cpu'
 
+model_name = "./outputs/vit-large-mt5-large"
+
 model_params = {
     "MODEL": "google/mt5-large",  # model_type: t5-base/t5-large
-    "IMG_MODEL": "google/vit-large-patch16-224-in21k",
+    "IMG_MODEL": "./outputs/vit-large-patch16-224-in21k",
     "MAX_SOURCE_TEXT_LENGTH": 64,  # max length of source text
     "MAX_TARGET_TEXT_LENGTH": 64,  # max length of target text
 }
 
-model_name = "./outputs/vit-large-mt5-large"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = MT5ForConditionalGeneration.from_pretrained(model_name)
+t5config = MT5Config.from_pretrained(model_name)
+t5config.vision_model_name = model_params["IMG_MODEL"]
+print(t5config)
+model = MT5ForConditionalGeneration.from_pretrained(model_name, config=t5config)
 model = model.to(device)
 batch_size = 8
 test_json_path = "./datasets/vqa_private_test.json"
