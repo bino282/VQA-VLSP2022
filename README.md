@@ -1,6 +1,6 @@
 # Vietnamese Visual Question Answering at VLSP 2022
 
-We use VIT model to encode image, and concate it with text and forward it to mt5 encode decode model. We can also prefix for text input. Use DETR detection to get object list from image and use as prefix for text input. We use also question language detection to make prefix for text input. Example text in put for mt5 encode decode : 
+We use VIT model to encode image, and concate it with text embedding and forward it to mt5 encode decode model. Use DETR detection to get object list from image and use as prefix for text input. We use also question language detection to make prefix for text input. Example text in put for mt5 encode decode : 
 
 ```
 object: object1 object2 ... ; answer in ja: question
@@ -34,7 +34,7 @@ python predict_language_question.py
 
 ```
 cd ./datasets
-python predict_language_question.py
+python detr_predict_obj.py
 ```
 
 ## Inference
