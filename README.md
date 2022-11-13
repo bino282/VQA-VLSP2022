@@ -55,6 +55,6 @@ To training you run:
 ```
 python train.py
 ```
-if GPU is limits, you can set gradient_checkpoiting=True and model.config.use_cache=False in mt5_trainer.py
+if GPU is limited, you can set gradient_checkpoiting=True and model.config.use_cache=False in mt5_trainer.py
 
 you can change size of model from large to base in model_params in mt5_trainer.py
