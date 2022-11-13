@@ -1,0 +1,1 @@
+TORCH_HOME="/datahdd/torch_cache" python mt5_trainer.py
